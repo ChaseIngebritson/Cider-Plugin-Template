@@ -1,3 +1,5 @@
+import path from 'path'
+
 export default class CiderPluginTemplate {
     /**
      * Base Plugin Details (Eventually implemented into a GUI in settings)
@@ -27,6 +29,15 @@ export default class CiderPluginTemplate {
     async onReady(): Promise<void> {
         await this.assureOutputFileExists()
         console.debug(`[Plugin][${this.name}] Ready.`)
+    }
+
+    /**
+     * Runs on renderer ready
+     * @param win 
+     */
+    onRendererReady(win) {
+        console.log(`[Plugin][${this.name}] Renderer Ready`)
+        this.env.utils.loadJSFrontend(path.join(this.env.dir, "index.frontend.js"))
     }
 
     /**

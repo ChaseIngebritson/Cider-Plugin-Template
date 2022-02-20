@@ -1,9 +1,8 @@
-import typescript from '@rollup/plugin-typescript';
-import copy from 'rollup-plugin-copy2'
-import zip from 'rollup-plugin-zip'
+import typescript from '@rollup/plugin-typescript'
+import copy from 'rollup-plugin-copy'
 
 export default {
-  input: 'src/index.ts',
+  input: ['src/index.ts', 'src/index.frontend.ts'],
   output: { 
     dir: 'dist', 
     format: 'cjs' 
@@ -16,10 +15,9 @@ export default {
       moduleResolution: "node"
     }),
     copy({
-      assets: ['package.json']
-    }),
-    zip({
-      dir: 'dist'
+      targets: [
+        { src: 'package.json', dest: 'dist' }
+      ]
     })
   ]
 }

@@ -5,7 +5,7 @@
     "target": "es5",
     "lib": ["es2021", "dom"],
     "allowJs": false,
-    "declaration": true,
+    "declaration": false,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
