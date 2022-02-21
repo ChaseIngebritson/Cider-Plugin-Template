@@ -1,16 +1,16 @@
 
-import { ipcRenderer } from 'electron'
+import { ipcRenderer, IpcRendererEvent } from 'electron'
 
 class CiderPluginTemplate {
   constructor() {
       // Setting up a ipcRenderer channel for back end to communicate with
-      ipcRenderer.on("plugin.backendComm", (event, message) => {
-          // Alert popup
-          bootbox.alert(`Backend says: ${message}`)
+      ipcRenderer.on('plugin.backendComm', (event: IpcRendererEvent, message: any) => {
+        // Alert popup
+        console.log(`Backend says: ${message}`)
       })
 
       // Saying hello to the backend
-      ipcRenderer.invoke("plugin.frontendComm", "Hello from the frontend!")
+      ipcRenderer.invoke('plugin.frontendComm', "Hello from the frontend!")
   }
 }
 

@@ -1,4 +1,5 @@
 import path from 'path'
+import { ipcMain, IpcMainEvent } from 'electron'    
 
 export default class CiderPluginTemplate {
     /**
@@ -29,6 +30,13 @@ export default class CiderPluginTemplate {
     async onReady(): Promise<void> {
         await this.assureOutputFileExists()
         console.debug(`[Plugin][${this.name}] Ready.`)
+
+        ipcMain.handle("plugin.frontendComm", (event: IpcMainEvent, message: any) => {
+            console.debug(`Frontend says: ${message}`)
+
+            const window = this.env.utils.getWindow()
+            window.webContents.send("plugin.backendComm", 'Hello from the backend!')
+        })
     }
 
     /**
