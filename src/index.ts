@@ -1,5 +1,5 @@
 import path from 'path'
-import { ipcMain, IpcMainEvent } from 'electron'    
+import { BrowserWindow, ipcMain, IpcMainEvent } from 'electron'    
 
 export default class CiderPluginTemplate {
     /**
@@ -27,8 +27,7 @@ export default class CiderPluginTemplate {
     /**
      * Runs on app ready
      */
-    async onReady(): Promise<void> {
-        await this.assureOutputFileExists()
+    onReady(): void {
         console.debug(`[Plugin][${this.name}] Ready.`)
 
         ipcMain.handle("plugin.frontendComm", (event: IpcMainEvent, message: any) => {
@@ -41,9 +40,9 @@ export default class CiderPluginTemplate {
 
     /**
      * Runs on renderer ready
-     * @param win 
+     * @param win The current browser window
      */
-    onRendererReady(win) {
+    onRendererReady(win: BrowserWindow) {
         console.log(`[Plugin][${this.name}] Renderer Ready`)
         this.env.utils.loadJSFrontend(path.join(this.env.dir, "index.frontend.js"))
     }
@@ -68,14 +67,6 @@ export default class CiderPluginTemplate {
      * @param attributes Music Attributes
      */
     onNowPlayingItemDidChange(attributes: object): void {
-
-    }
-
-    /**
-     * Create the output file, or just open it if it already exists
-     * @private
-     */
-    private async assureOutputFileExists(): Promise<void> {
 
     }
 }

@@ -16,7 +16,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "node_modules/musickit-typescript",
+      "node_modules/@types"
+    ]
   },
   "include": ["src"],
   "exclude": ["node_modules", "build"]
