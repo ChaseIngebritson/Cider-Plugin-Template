@@ -1,6 +1,6 @@
 
 class CiderPluginTemplateFrontend {
-  PLUGIN_NAME = 'cider-plugin-template'
+  name = 'Cider Plugin Template'
 
   constructor() {
     CiderFrontAPI.StyleSheets.Add('./plugins/cider-plugin-template/ciderplugintemplate.less')
@@ -51,7 +51,7 @@ class CiderPluginTemplateFrontend {
   }
 
   async debug(text) {
-    console.log(`[Plugin][${this.PLUGIN_NAME}]`, text)
+    console.log(`[Plugin][${this.name}]`, text)
   }
 }
 
